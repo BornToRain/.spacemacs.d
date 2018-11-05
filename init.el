@@ -54,6 +54,8 @@ values."
              shell-default-position 'bottom)
      spell-checking
      syntax-checking
+     (chinese :variables
+              chinese-enable-youdao-dict t)
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
@@ -140,7 +142,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+                               :size 16
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -322,7 +324,68 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   )
-
+(eval-after-load 'haskell-font-lock
+  '(progn
+     (setq haskell-font-lock-symbols t)
+     ;; Haskell基础操作符
+     (add-to-list 'haskell-font-lock-symbols-alist '("where".?∵))
+     (add-to-list 'haskell-font-lock-symbols-alist '("return".?η))
+     (add-to-list 'haskell-font-lock-symbols-alist '("join".?µ))
+     (add-to-list 'haskell-font-lock-symbols-alist '("..".?…))
+     (add-to-list 'haskell-font-lock-symbols-alist '(">>".?»))
+     (add-to-list 'haskell-font-lock-symbols-alist '("<<".?«))
+     (add-to-list 'haskell-font-lock-symbols-alist '("<~".?⇜))
+     (add-to-list 'haskell-font-lock-symbols-alist '("/<".?≮))
+     (add-to-list 'haskell-font-lock-symbols-alist '("/>".?≯))
+     (add-to-list 'haskell-font-lock-symbols-alist '("<<<".?⋘))
+     (add-to-list 'haskell-font-lock-symbols-alist '(">>>".?⋙))
+     (add-to-list 'haskell-font-lock-symbols-alist '("<|".?⊲))
+     (add-to-list 'haskell-font-lock-symbols-alist '("|>".?⊳))
+     (add-to-list 'haskell-font-lock-symbols-alist '(":=".?≔))
+     (add-to-list 'haskell-font-lock-symbols-alist '("><".?⋈))
+     (add-to-list 'haskell-font-lock-symbols-alist '("=:".?≕))
+     (add-to-list 'haskell-font-lock-symbols-alist '("=?".?≟))
+     (add-to-list 'haskell-font-lock-symbols-alist '("exists".?∃))
+     ;; 集合
+     (add-to-list 'haskell-font-lock-symbols-alist '("`elem`".?∈))
+     (add-to-list 'haskell-font-lock-symbols-alist '("`notElem`".?∉))
+     (add-to-list 'haskell-font-lock-symbols-alist '("`isSubsetOf`".?⊆))
+     (add-to-list 'haskell-font-lock-symbols-alist '("`isSubsetOfisProperSubsetOf`".?⊂))
+     (add-to-list 'haskell-font-lock-symbols-alist '("`union`".?∪))
+     (add-to-list 'haskell-font-lock-symbols-alist '("`intersect`".?∩))
+     (add-to-list 'haskell-font-lock-symbols-alist '("sum".?∑))
+     (add-to-list 'haskell-font-lock-symbols-alist '("product".?∏))
+     (add-to-list 'haskell-font-lock-symbols-alist '("++".?⧺))
+     (add-to-list 'haskell-font-lock-symbols-alist '("[]".?∅))
+     ;; 常量
+     (add-to-list 'haskell-font-lock-symbols-alist '("Bool".?𝔹))
+     (add-to-list 'haskell-font-lock-symbols-alist '("True".?𝑇))
+     (add-to-list 'haskell-font-lock-symbols-alist '("False".?𝐹))
+     (add-to-list 'haskell-font-lock-symbols-alist '("Integer".?ℤ))
+     (add-to-list 'haskell-font-lock-symbols-alist '("String".?𝕊))
+     (add-to-list 'haskell-font-lock-symbols-alist '("Double".?𝔻))
+     (add-to-list 'haskell-font-lock-symbols-alist '("tau".?τ))
+     (add-to-list 'haskell-font-lock-symbols-alist '("Maybe".?𝕄))
+     (add-to-list 'haskell-font-lock-symbols-alist '("Just".?𝐽))
+     (add-to-list 'haskell-font-lock-symbols-alist '("Nothing".?𝑁))
+     (add-to-list 'haskell-font-lock-symbols-alist '("Either".?𝔼))
+     (add-to-list 'haskell-font-lock-symbols-alist '("Left".?𝐿))
+     (add-to-list 'haskell-font-lock-symbols-alist '("Right".?𝑅))
+     ;; 运算符
+     (add-to-list 'haskell-font-lock-symbols-alist '("*".?×))
+     (add-to-list 'haskell-font-lock-symbols-alist '("`div`".?÷))
+     ;; Functor Monoid Monad操作符
+     (add-to-list 'haskell-font-lock-symbols-alist '("<>".?⊕))
+     (add-to-list 'haskell-font-lock-symbols-alist '("`mappend`".?⊕))
+     (add-to-list 'haskell-font-lock-symbols-alist '("<$>".?↥))
+     (add-to-list 'haskell-font-lock-symbols-alist '("<*>".?⊛))
+     (add-to-list 'haskell-font-lock-symbols-alist '(">>=".?↪))
+     (add-to-list 'haskell-font-lock-symbols-alist '("mzero".?∅))
+     (add-to-list 'haskell-font-lock-symbols-alist '("mempty".?∅))
+     (add-to-list 'haskell-font-lock-symbols-alist '("empty".?∅))
+     
+     )
+  )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
@@ -351,7 +414,7 @@ you should place your code here."
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
    (quote
-    (youdao-dictionary names chinese-word-at-point pyim pyim-basedict pangu-spacing find-by-pinyin-dired ace-pinyin pinyinlib unfill smeargle orgit mwim mmm-mode markdown-toc markdown-mode magit-gitflow gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md evil-magit magit magit-popup git-commit ghub treepy graphql with-editor pretty-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode haml-mode emmet-mode company-web web-completion-data xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern s dash-functional tern coffee-mode flyspell-correct-ivy flyspell-correct flycheck-pos-tip pos-tip flycheck-haskell auto-dictionary yaml-mode company-cabal lsp-haskell lsp-mode intero flycheck dash hlint-refactor hindent haskell-snippets company-ghci company-ghc ghc haskell-mode cmm-mode fuzzy company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ace-window which-key wgrep use-package smex pcre2el macrostep ivy-hydra hydra helm-make helm helm-core popup flx exec-path-from-shell evil-visualstar evil-escape evil goto-chg undo-tree elisp-slime-nav diminish counsel-projectile projectile pkg-info epl counsel swiper ivy bind-map bind-key auto-compile packed async avy)))
+    (neotree powerline youdao-dictionary names chinese-word-at-point pyim pyim-basedict pangu-spacing find-by-pinyin-dired ace-pinyin pinyinlib unfill smeargle orgit mwim mmm-mode markdown-toc markdown-mode magit-gitflow gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md evil-magit magit magit-popup git-commit ghub treepy graphql with-editor web-mode tagedit slim-mode scss-mode sass-mode pug-mode haml-mode emmet-mode company-web web-completion-data xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern s dash-functional tern coffee-mode flyspell-correct-ivy flyspell-correct flycheck-pos-tip pos-tip flycheck-haskell auto-dictionary yaml-mode company-cabal lsp-haskell lsp-mode intero flycheck dash hlint-refactor hindent haskell-snippets company-ghci company-ghc ghc haskell-mode cmm-mode fuzzy company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ace-window which-key wgrep use-package smex pcre2el macrostep ivy-hydra hydra helm-make helm helm-core popup flx exec-path-from-shell evil-visualstar evil-escape evil goto-chg undo-tree elisp-slime-nav diminish counsel-projectile projectile pkg-info epl counsel swiper ivy bind-map bind-key auto-compile packed async avy)))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
  '(vc-annotate-background nil)
