@@ -383,7 +383,6 @@ you should place your code here."
      (add-to-list 'haskell-font-lock-symbols-alist '("mzero".?∅))
      (add-to-list 'haskell-font-lock-symbols-alist '("mempty".?∅))
      (add-to-list 'haskell-font-lock-symbols-alist '("empty".?∅))
-     
      )
   )
 ;; Do not write anything past this comment. This is where Emacs will
